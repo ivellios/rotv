@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load thumbnail blog_tags program_tags %}
+
+{% block meta %}
+<meta property="og:title" content="{% for tag in tag_query %}{{ tag }} {% endfor %}- wyniki wyszukiwania w serwisie Raport Obieżyświata" />
+<meta property="og:description" content="Wyniki wyszukiwania dla hasła: {% for tag in tag_query %}{{ tag }} {% endfor %}" />
+<meta property="og:type" content="video.tv_show" />
+{% comment %}<meta property="og:url" content="http://raportobiezyswiata.tv{% url "tag_search_results" tag_query_raw %}" />
+<meta property="og:image" content="http://raportobiezyswiata.tv{{ program.episode_set.all.0.image.url }}" />{% endcomment %}
+<meta property="og:site_name" content="Raport Obieżyświata" />
+<meta property="fb:admins" content="100000251304502" />
+{% endblock meta %}
+
+{% block title %}{% for tag in tag_query %}{{ tag }} {% endfor %}- wyniki wyszukiwania - {{ block.super }} {% endblock %}
+{% block description %}{% endblock %}
+
+
+{% block content %}
+<div class="container">
+  <div class="row">
+  <div class="col s12 l8 xl9">
+  {% if episodes or entries %}
+    <h1 class="heading nospace">Wyniki wyszukiwania dla: {% for tag in tag_query %}<em>{{ tag }}</em> {% endfor %}</h1>
+
+    {% if episodes %}
+      <div class="episode-cards program-episodes-list row">
+      {% for episode in episodes %}
+        <div class="col s12 m12 l6">
+          <div class="card small episode-card">
+            <div class="program-name {{ episode.program.slug }}-border">
+              <a href="{{ episode.program.get_absolute_url }}">{{ episode.program.name }}</a>
+            </div>
+            <div class="card-image">
+              <span class="chip right ">
+                <a href="{{ episode.get_absolute_url }}">#{{ episode.number|stringformat:"02d" }}</a>
+              </span>
+              <a class="waves-effect waves-light" href="{{ episode.get_absolute_url }}">
+                <img src="{% thumbnail episode.image '850x400' crop %}">
+                </a>
+            </div>
+            <div class="card-content">
+              <div class="publish-time grey-text">
+                Opublikowany {{ episode.publish_time|date:"d E Y" }}
+              </div>
+              <div class="episode-title card-title">
+                {{ episode.title }}
+              </div>
+              <div>
+                {{ episode.short|safe }}
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+      </div>
+    {% endif %}
+    {% if entries %}
+    <div class="container entries entry-list">
+      <div class="row">
+        <div class="col s12">
+          {% for entry in entries %}
+            {% include 'blog/_entry_brief.html' %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {% else %}
+    <div class="container entries flatpage">
+      <div class="row">
+        <div class="col s12 entry-content-col">
+          <div class="entry-content white">
+            <header>
+              <h1>
+                Wyszukiwanie
+              </h1>
+              <hr>
+            </header>
+
+            <div class="flatpage-content flow-text">
+              Nie znaleziono wyników dla hasła: {% for tag in tag_query %}<em>{{ tag }}</em> {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  {% endif %}
+  </div>
+  <div class="col s12 l4 xl3">
+      {% blog_last_entries 4 entry header="Ostatnie wpisy" %}
+      {% recent_episodes 4 header="Najnowsze materiały wideo" %}
+      {% if entries or episodes %}
+      {% promoted_episodes 4 header="Polecane materiały wideo" %}
+      {% endif %}
+  </div>
+  </div>
+</div>
+{% endblock content %}

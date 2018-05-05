@@ -1,0 +1,41 @@
+.program-detail, .program-list
+  header
+    @media #{$medium-and-down}
+      margin-top: 20px
+    .badge
+      background: #333
+    .program-image
+      img
+        width: 100%
+  .episode-cards.program-episodes-list
+    .card.small
+      height: 330px
+      .card-image
+        max-height: 70%
+      @media #{$medium-and-down}
+        height: 200px
+        .card-image
+          max-height: 50%
+        .card-content
+          max-height: 50%
+      @media #{$large-and-up}
+        height: 250px
+    .card.large
+      height: 430px
+      @media #{$small-and-down}
+        height: 350px
+        .card-image
+          max-height: 50%
+        .card-content
+          max-height: 50%
+      .card-image
+        max-height: 70%
+      .card-content
+        .card-title
+          margin-bottom: 10px
+          height: auto
+  .table-of-contents
+    height: 500px
+    overflow: auto
+    li
+      padding: 1px 0

@@ -1,0 +1,11 @@
+{% if entries %}
+{% if header %}<h2>{{ header }}</h2>{% endif %}
+<div class="collection">
+  {% for entry in entries %}
+    <a href="{{ entry.get_absolute_url }}" class="collection-item {% if current == entry %}active{% endif %}">
+      <span class="badge secondary-content grey-text">{{ entry.posted|date:"d M" }}</span>
+      <span class="collection-item-title">{{ entry.title }}</span>
+    </a>
+  {% endfor %}
+</div>
+{% endif %}

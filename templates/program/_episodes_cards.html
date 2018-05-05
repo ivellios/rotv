@@ -1,0 +1,15 @@
+{% load thumbnail %}
+{% if episodes %}
+<div class="episode-cards">
+  {% if header %}
+  <div class="col s12">
+    <h2>{{ header }}</h2>
+  </div>
+  {% endif %}
+  {% for episode in episodes %}
+  <div class="col {% if columns %}{{ columns }}{% else %}s12 m3{% endif %}">
+    {% include "program/_episode_card.html" %}
+  </div>
+  {% endfor %}
+</div>
+{% endif %}

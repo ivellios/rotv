@@ -1,0 +1,42 @@
+{% extends 'commons/email_base.html' %}
+
+{% block preheader %}
+    Mamy nowe zgłoszenie od organizatorów wydarzenia {{ event.name }}
+{% endblock %}
+
+{% block content %}
+<p>Witaj,</p>
+
+<p>Właśnie otrzymaliśmy zgłoszenie do patronatu nad wydarzeniem. Poniżej znajdziesz szczegóły zgłoszenia.</p>
+
+<p>
+    <strong>Nazwa wydarzenia: </strong>{{ event.name }}<br>
+    <strong>Miasto: </strong>{{ event.city }}<br>
+    <strong>Miejsce wydarzenia: </strong>{{ event.spot }}<br>
+    <strong>Odbywa się w dniach: </strong>{{ event.start }} - {{ event.end }}<br>
+    <strong>E-mail kontaktowy: </strong><a href="mailto:{{ event.contact_email }}">{{ event.contact_email }}</a><br>
+    <strong>Strona internetowa wydarzenia: </strong><a href="{{ event.url }}">{{ event.url }}</a>
+</p>
+<p>
+    <strong>Dodatkowe uwagi: </strong>
+        {{ event.additional_notes }}
+</p>
+
+<table border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
+  <tbody>
+    <tr>
+      <td align="left">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tbody>
+            <tr>
+              <td> <a href="{{ event.get_admin_url }}" target="_blank">Zarządzaj zgłoszeniem</a> </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Do następnego Raportu...</p>
+{% endblock %}

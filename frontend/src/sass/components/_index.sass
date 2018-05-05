@@ -1,0 +1,120 @@
+.index
+  margin-top: 20px
+
+  nav.events-current
+    margin-bottom: 20px
+    height: 100px
+
+  .carousel.carousel-slider.recent-episodes-carousel
+    .carousel-item
+      min-height: 480px
+      @media #{$medium-and-down}
+        height: 300px
+      a.episode-image
+          background-position: center
+          background-size: cover
+          height: 100%
+          display: block
+          @media #{$medium-and-down}
+            height: 300px
+      .carousel-program
+        background-color: $primary-color
+        font-weight: bold
+        font-size: 1.6em
+        height: auto
+        padding: 0.5em
+        a
+          color: white
+
+  .carousel.carousel-slider.hero-carousel
+    @media #{$medium-and-down}
+      margin-top: 20px
+    .indicators
+      top: 0
+      left: 20px
+      right: auto
+      bottom: auto
+      @media #{$medium-and-down}
+        .indicator-item
+          margin: 0
+    .carousel-item
+      .details
+        min-height: 520px
+        background: white
+        padding: 20px
+        @media #{$medium-and-down}
+          min-height: 280px
+          padding: 0
+        .carousel-hero-title
+          display: block
+          background: rgba(255,255,255,0.9)
+          width: 100%
+          display: block
+          @media #{$medium-and-down}
+            padding: 10px
+          h1
+            margin: 0
+            font-size: 2em
+            @media #{$medium-and-down}
+              font-size: 1.5em
+          .subtitle
+            font-size: 1.4em
+            a
+              color: $secondary-color
+            font-weight: bold
+            @media #{$medium-and-down}
+              font-size: 1.2em
+        .hero-description
+          font-size: 1.2em
+          margin-top: 10px
+          width: 100%
+        .action
+          position: absolute
+          bottom: 20px
+          right: 20px
+
+
+      min-height: 520px
+      @media #{$medium-and-down}
+        min-height: 280px
+      .hero-image
+        background-position: center
+        background-size: cover
+        display: block
+        height: 100%
+        min-height: 520px
+        @media #{$medium-and-down}
+          min-height: 180px
+
+  .events-next-event
+    .event-details
+      display: block
+      width: 100%
+      margin-bottom: 10px
+      background: white
+      line-height: 1em
+      img
+        width: 100%
+      span
+        display: block
+        text-align: center
+        color: #666
+        padding: 5px
+
+.twitter-box
+  background-color: #0084b4;
+  min-height: 140px
+  background-size: cover;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 12px
+  h4
+    padding-bottom: 20px
+
+.youtube-box
+  min-height: 145px
+  background-color: #282828;
+  text-align: center;
+  padding: 40px;
+  margin-bottom: 12px

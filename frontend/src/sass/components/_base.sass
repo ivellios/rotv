@@ -1,0 +1,157 @@
+main
+    min-height: 66vh
+    .container
+        ul
+            padding-left: 20px
+            li
+                list-style-type: disc
+
+@media #{$large-and-up}
+  .container
+    width: 98%
+
+@media #{$small-and-down}
+  .container
+    width: 100%
+
+.row .col.no-gutters
+    padding: 0
+
+#sidenav-overlay
+  z-index: 996
+
+
+.card .card-content .card-title
+  line-height: 24px
+  margin-bottom: 24px
+  display: block
+
+
+.side-nav
+  margin-top: 64px
+  @media only screen and (max-width: 600px)
+    margin-top: 56px
+  a.brief
+    padding: 0
+    height: auto
+    .card
+        .card-title
+          line-height: 24px
+          text-shadow: 0 0 10px #000
+          font-weight: bold
+
+main
+  .col.video-box
+    padding-left: 0
+    @media only screen and (max-width: 992px)
+      padding-right: 0
+  margin: 20px 20px
+  @media only screen and (max-width: 992px)
+    margin: 0
+
+nav
+  padding: 0 20px
+  margin: 0
+  box-shadow: none
+  @media only screen and (max-width: 992px)
+    padding: 0
+  .brand-logo
+    padding: 0
+    margin: 0
+    line-height: 45px
+    img
+      margin-top: 10px
+  ul
+    a
+      color: #333333
+  &.main-navigation
+    border-bottom: 1px solid #ccc
+
+.navbar-breadcrumbs
+  nav
+    height: 32px
+    line-height: 32px
+    .breadcrumbs
+      font-size: 1rem
+    ul
+      li
+        a
+          color: white
+          i
+            height: 32px
+            line-height: 32px
+
+.side-nav
+  background: white
+  .active
+    background: white
+  li
+    a
+      color: $primary-color
+      padding-left: 54px
+    &.no-padding
+      a
+        padding: 0 16px
+    .collapsible-body
+      li
+        background: white
+        a
+          padding: 0 54px
+          color: $primary-color
+  li > a > i.material-icons
+    margin-right: 16px
+    color: $primary-color
+
+
+.more-block
+  display: block
+  font-size: 1.4em
+  width: 100%
+  text-align: center
+  background: white
+  padding: 15px
+  margin-bottom: 20px
+  &:hover
+    background: $primary-color
+    color: white
+
+
+hr
+  border: 0
+  border-bottom: 1px solid #ccc
+
+.alignright
+  float: right
+  margin-left: 10px
+
+.alignleft
+  float: left
+  margin-right: 10px
+
+.right
+  float: right
+  margin-left: 10px
+  &.responsive-img
+    @media #{$small-and-down}
+      width: 100%
+      margin: 10px 0
+
+
+.like-box-wrapper
+  width: 100%
+
+.footer-notes
+  color: white
+  min-height: 50px
+  padding: 10px 20px
+
+#u_0_0
+    width: 100% !important
+
+.fb-like.fb_iframe_widget.fb_iframe_widget_fluid,
+.fb-like.fb_iframe_widget.fb_iframe_widget_fluid > span,
+.fb-like.fb_iframe_widget.fb_iframe_widget_fluid > span > iframe
+    width: 100% !important
+
+nav .button-collapse i
+  color: $primary-color

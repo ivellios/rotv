@@ -1,0 +1,15 @@
+*.pyc
+public/
+.DS_Store
+*.db
+
+frontend/node_modules/*
+frontend/build/
+dump.json
+.idea
+
+django-rotv-apps/*
+django-tinymce4-lite/*
+
+settings_local.py
+fabfile.py

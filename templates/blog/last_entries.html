@@ -1,0 +1,10 @@
+<div class="collection">
+  {% for entry in entries %}
+  <div class="collection-item">
+    <a href="{{ entry.get_absolute_url }}" class="{% if current == entry %}active{% endif %}">
+      {{ entry.title }}
+    </a>
+    {{ entry.posted|date:"d E Y \o H:m" }}
+  </div>
+  {% endfor %}
+ </div>

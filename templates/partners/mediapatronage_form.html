@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static material_form %}
+
+{% block title %}Zgłoszenie wydarzenia - {{ block.super }} {% endblock %}
+{% block description %}{% endblock %}
+
+{% block stylesheet %}
+    <link href="{% static 'material/css/materialize.forms.css' %}" rel="stylesheet">
+    <link href="{% static 'material/css/jquery.datetimepicker.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block javascript %}
+    <script src="{% static 'material/js/jquery.datetimepicker.full.js' %}"></script>
+    <script src="{% static 'material/js/jquery.formset.js' %}"></script>
+    <script src="{% static 'material/js/materialize.forms.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="container entries flatpage">
+        <div class="row">
+            <div class="col s12 l8">
+                <div class="entry-content white">
+                    <header>
+                        <h1>
+                            Dodaj wydarzenie do naszego kalendarza
+                        </h1>
+                    </header>
+
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% form form=form %}{% endform %}
+                        <button type="submit" name="_submit" class="btn">Wyślij</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col s12 l4">
+                <h3>Patronat nad wydarzeniami</h3>
+                <p>
+                    <strong>Raport Obieżyświata od lat wspiera Polskie wydarzenia poświęcone tematyce fantastyki. Wybranym
+                    konwentom i festiwalom oferujemy patronat medialny. W jego ramach udostępniamy całą gamę opcji
+                    współpracy dostosowanych do potrzeb partnera.</strong>
+                </p>
+                <p>
+                    W ramach patronatu oferujemy między innymi:
+                </p>
+                <ul>
+                    <li>Publikację aktualności o przebiegu przygotowań do wydarzenia</li>
+                    <li>Promocję na kanałach społecznościowych telewizji</li>
+                    <li>Publikację bannera na stronie internetowej</li>
+                    <li>Zapowiedź wydarzenia w programie Kurs na Konwent</li>
+                    <li>Wywiad na żywo z organizatorami w programie Orgowie do Raportu</li>
+                    <li>Relację na żywo z miejsca wydarzenia</li>
+                    <li>Przygotowanie wideo-relacji z wydarzenia</li>
+                    <li>Nagranie prelekcji, paneli dyskusyjnych</li>
+                    <li>Streaming z prelekcji oraz paneli dyskusyjnych</li>
+                </ul>
+                <p>
+                    Jeżeli jesteś organizatorem wydarzenia, zapraszamy Cię do zgłoszenia imprezy przez formularz zamieszczony obok.
+                    Nasza redakcja skontaktuje się z Wami i przedstawi możliwe formy współpracy przy promocji wydarzenia.
+                </p>
+            </div>
+    </div>
+
+    </div>
+{% endblock content %}

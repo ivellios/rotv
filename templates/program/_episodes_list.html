@@ -1,0 +1,35 @@
+{% if episodes %}
+<div class="similiar-episodes-list row">
+    {% if header %}
+    <div class="row header">
+      <div class="col s12">
+        <h2>{{ header }}</h2>
+      </div>
+    </div>
+    {% endif %}
+    {% for episode in episodes %}
+    <div class="col s12 m6 l12">
+      <div class="row similiar-episodes-list-item {{ episode.program.slug}}-border">
+        <div class="program-name">
+            <a class="" href="{{ episode.program.get_absolute_url }}">
+              {{ episode.program.name }}
+            </a>
+            <a href="{{ episode.get_absolute_url }}">
+              <span class="right">
+                #{{ episode.number|stringformat:"02d" }}
+              </span>
+            </a>
+        </div>
+        <a href="{{ episode.get_absolute_url }}" title="{{ episode.title }}">
+            <div class="col s12 image">
+              <img src="{{ episode.image.url }}" class="responsive-img" alt="">
+            </div>
+            <div class="col s12 title">
+              <div class="episode-title">{{ episode.title }}</div>
+            </div>
+        </a>
+      </div>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}

@@ -1,0 +1,31 @@
+{% load blog_filters %}
+<div class="entry-content white">
+  <header>
+    {% for category in entry.categories.all %}
+    <span class="grey badge white-text">{{ category }}</span>
+    {% endfor %}
+    <h1>
+      <a href="{{ entry.get_absolute_url }}">{{ entry }}</a>
+    </h1>
+    <hr>
+    <div class="publish-info grey-text">
+      Opublikowany {{ entry.posted|date:"d E Y \o H:m" }} |
+      <i class="fa fa-comment"></i> <a class="disqus disqus-comment-count" href="//{{ request.META.HTTP_HOST }}{{ entry.get_absolute_url }}#comments" data-disqus-url="http://raportobiezyswiata.tv{{ entry.get_absolute_url}}"></a>
+    </div>
+  </header>
+
+  {% if entry.image %}
+    <a href="{{ entry.get_absolute_url }}">
+      <div class="entry-image-full brief-image" style="background-image: url({{ entry.image.url }})">
+      </div>
+    </a>
+  {% elif entry.image_right %}
+    <div class="entry-image">
+      <img src="{{ entry.image_right.url }}" class="alignright {% if index_image %}index-image{% endif %}" alt=""/>
+    </div>
+  {% endif %}
+
+  <div class="long-text">
+    {{ entry.text|read_more:entry.get_absolute_url|safe }}
+  </div>
+</div>

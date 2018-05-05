@@ -1,0 +1,4 @@
+img.img_block{width:100%;height:auto}
+img.img_left{float:left;margin-right:10px}
+img.img_right{float:right;margin-left:10px}
+body.mce-fullscreen .grp-module.grp-submit-row.grp-fixed-footer, body.mce-fullscreen header#grp-header{display:none}

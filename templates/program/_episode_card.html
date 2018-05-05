@@ -1,0 +1,16 @@
+{% load thumbnail %}<div class="card small episode-card {% if size %}{{ size }}{% endif %}">
+  {% if not hide_program %}
+  <div class="program-name {{ episode.program.slug }}-border">
+    {{ episode.program.name }}
+    <span class="right">#{{ episode.number|stringformat:"02d" }}</span>
+  </div>
+  {% endif %}
+  <div class="card-image">
+    <a class="waves-effect waves-light" href="{{ episode.get_absolute_url }}"><img src="{% thumbnail episode.image '570x400' crop %}"></a>
+  </div>
+  <div class="card-content">
+    <div class="episode-title card-title">
+      {{ episode.title }}
+    </div>
+  </div>
+</div>

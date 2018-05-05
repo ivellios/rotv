@@ -1,0 +1,40 @@
+{% load blog_filters %}
+
+<div class="entry-content white">
+  <header class="entry-detail">
+    {% for category in entry.categories.all %}
+    <span class="grey badge white-text">{{ category }}</span>
+    {% endfor %}
+    <h1>
+      {{ entry }}
+    </h1>
+    <hr>
+    <div class="publish-info grey-text">
+      Autor: Redakcja | Opublikowany {{ entry.posted|date:"d E Y \o H:m" }} |
+      <i class="fa fa-comment"></i> <a class="disqus disqus-comment-count" href="//{{ request.META.HTTP_HOST }}{{ entry.get_absolute_url }}#comments" data-disqus-url="http://raportobiezyswiata.tv{{ entry.get_absolute_url}}"></a>
+    </div>
+  </header>
+  {% if entry.image_right %}
+    <div class="entry-image">
+      <img src="{{ entry.image_right.url }}" class="alignright" alt=""/>
+    </div>
+  {% endif %}
+
+  <div class="{% if entry.is_long %}long-text{% else %}flow-text{% endif %}">
+    {{ entry.text|safe }}
+  </div>
+</div>
+
+<div class="entry-share white">
+  <div class="fb-like" data-href="http://raportobiezyswiata.tv{{ entry.get_absolute_url }}" data-send="false" data-width="550" data-show-faces="false"></div>
+</div>
+
+<div class="entry-meta white">
+
+  <div class="block tags">
+    {% for tag in entry.tags %}
+    <a class="chip" href="{% url 'tag_search_results' tag.name|slugify %}">{{ tag }}</a>
+    {% endfor %}
+  </div>
+
+</div>

@@ -1,0 +1,22 @@
+{% for element in nav %}
+  {% if element.has_subnav %}
+  <li class="no-padding">
+    <ul class="collapsible collapsible-accordion">
+      <li>
+        <a class="collapsible-header">{{ element.name }}<i class="material-icons">arrow_drop_down</i></a>
+        <div class="collapsible-body">
+          <ul>
+            {% for subelement in element.get_subnav %}
+                <li>
+                  <a href="{{ subelement.url }}">{{ subelement.name }}</a>
+                </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </li>
+  {% else %}
+  <li><a href="{{ element.url }}">{{ element.name }}</a>
+  {% endif %}
+{% endfor %}

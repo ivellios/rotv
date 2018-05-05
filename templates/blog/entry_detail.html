@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load thumbnail program_tags blog_tags %}
+
+{% block title %}{{ entry }} - {{ block.super }} {% endblock %}
+{% block description %}{{ entry.text|striptags|truncatewords:"100"|force_escape }}{% endblock %}
+
+{% block meta %}
+<meta property="og:title" content="{{ entry.title }}" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://raportobiezyswiata.tv{{ entry.get_absolute_url }}" />
+{% if entry.image %}
+<meta property="og:image" content="http://raportobiezyswiata.tv{{ entry.image.url }}" />
+{% else %}
+    {% if entry.image_right %}
+<meta property="og:image" content="http://raportobiezyswiata.tv{{ entry.image_right.url }}" />
+    {% endif %}
+{% endif %}
+<meta property="og:site_name" content="Raport Obieżyświata" />
+<meta property="og:description" content="{{ entry.text|striptags|truncatewords_html:30 }}"/>
+<meta property="fb:admins" content="100000251304502" />
+{% endblock %}
+
+{% block disqus_id %}"entry_{{ entry.pk }}"{% endblock %}
+
+
+{% block header %}
+{% if entry.image %}
+<header class="entry" style="background-image: url({{ entry.image.url }})">
+</header>
+{% endif %}
+{% endblock header %}
+
+{% block content %}
+<div class="container blog">
+  <div class="row">
+    <div class="col s12 l8 xl9 {% if entry.image %}cover{% endif %} entry-content-col">
+      <div class="entries entry-detail">
+        {% include 'blog/_entry.html' %}
+      </div>
+
+      <div class="entry-comments">
+        {% include '_disqus.html' %}
+      </div>
+
+    </div>
+    <div class="col s12 l4 xl3">
+
+      {% blog_last_entries 10 entry header="Ostatnie wpisy" %}
+      <h2>Przerwa na reklamę</h2>
+      <script charset="utf-8" type="text/javascript" src="//www.kinguin.net/pl/affiliatepluswidget/index/widget/?___store=kinguin_pl_polish&account_id=23356&category_group=genre-4&is_image=0&is_price=1&is_rated=0&widget_size=300x250"></script><noscript><a href="https://www.kinguin.net/pl/?r=23356">Kinguin.pl</a></noscript>
+
+      {% similar_entries_by_tags entry.tags header="Powiązane wpisy" %}
+      {% similar_episodes_by_tags_list entry.tags 6 header="Podobne materiały wideo" %}
+    </div>
+  </div>
+
+</div>
+{% endblock content %}

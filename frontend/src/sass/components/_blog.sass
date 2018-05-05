@@ -1,0 +1,94 @@
+header.entry
+  background-size: cover
+  background-position: center
+  height: 400px
+  @media #{$medium-and-down}
+    height: 200px
+
+.blog
+  .cover
+    position: relative
+    top: -130px
+    @media #{$medium-and-down}
+      position: static
+      top: 0
+div.entries
+
+  .entry-content-col
+    @media #{$medium-and-down}
+      padding: 0
+  .entry-content
+    margin-bottom: 40px
+    h1
+      font-size: 2.8em
+      @media #{$medium-and-down}
+        margin: 0.5em 0
+      a
+        color: $primary-color
+        &:hover
+          text-decoration: none
+    .long-text p
+      font-size: 1.2em
+      line-height: 1.6em
+    header
+      margin: 1em 0
+      &.entry-detail
+        padding: 20px
+    @media #{$medium-and-down}
+      padding: 15px
+    a
+      color: $secondary-color
+      &:hover
+        text-decoration: underline
+    img
+      &.img_block
+        width: 100%
+        height: auto
+      @media #{$medium-and-up}
+        &.img_left
+          float: left
+          margin-right: 10px
+        &.img_right
+          float: right
+          margin-left: 10px
+      @media #{$small-and-down}
+        float: none
+        margin: 10px 0
+
+
+  .entry-image
+    img
+      max-width: 200px
+      @media #{$small-and-down}
+        width: 40%
+      &.index-image
+        max-height: 150px
+        max-width: none
+  .entry-image-full
+    background-size: cover
+    height: 250px
+    background-position: center
+    margin-bottom: 10px
+    &.brief-image
+      height: 200px
+      margin-bottom: 0
+  .entry-share
+    margin-bottom: 20px
+    padding: 20px
+  .entry-meta
+    padding: 10px
+    margin-bottom: 20px
+    .publish-info
+      font-size: 1.1em
+      color: $primary-color
+      margin-bottom: 10px
+    .tags
+      .chip:hover
+        background-color: $primary-color
+        color: white
+
+  .entry-meta-small
+    margin-bottom: 10px
+
+  .entry-comments
+    margin-bottom: 20px

@@ -1,0 +1,51 @@
+{% load thumbnail %}
+<div class="episode-cards program-episodes-list">
+  {% for episode in episodes %}
+  <div class="col
+      {% if forloop.counter < 3 %}
+      s12 m12 l6
+      {% else %}
+      s12 m4 l3
+      {% endif %}">
+    <div class="card
+      {% if forloop.counter < 3 %}
+        large
+      {% else %}
+        small
+      {% endif %}
+        episode-card ">
+      {% if not hide_program %}
+      <div class="program-name {{ episode.program.slug }}-border">
+        <a href="{{ episode.program.get_absolute_url }}">{{ episode.program.name }}</a>
+      </div>
+      {% endif %}
+      <div class="card-image">
+        <span class="chip right ">
+          <a href="{{ episode.get_absolute_url }}">#{{ episode.number|stringformat:"02d" }}</a>
+        </span>
+        <a class="waves-effect waves-light" href="{{ episode.get_absolute_url }}">
+          <img src="
+            {% if forloop.counter < 3 %}
+              {% thumbnail episode.image '850x400' %}
+            {% else %}
+              {% thumbnail episode.image '500x250' %}
+            {% endif %}">
+          </a>
+      </div>
+      <div class="card-content">
+        <div class="publish-time grey-text">
+          Opublikowany {{ episode.publish_time|date:"d E Y" }}
+        </div>
+        <div class="episode-title card-title">
+          {{ episode.title }}
+        </div>
+        <div>
+        {% if forloop.counter < 3 %}
+          {{ episode.short|safe }}
+        {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>

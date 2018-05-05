@@ -1,0 +1,21 @@
+{% load thumbnail %}
+{% if programs %}
+  <div class="similar-programs">
+    {% if header %}
+    <div class="row header">
+      <div class="col s12">
+        <h2>{{ header }}</h2>
+      </div>
+    </div>
+    {% endif %}
+    {% for program in programs %}
+    <div class="row">
+      <div class="col s12">
+        <div class="image">
+          <a href="{{ program.get_absolute_url }}"><img src="{% thumbnail program.image '570x147' %}" class="responsive-img"></a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+{% endif %}

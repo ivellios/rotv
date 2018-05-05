@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% load thumbnail blog_tags program_tags %}
+
+
+
+{% block header %}
+<div class="container index">
+  <div class="row">
+    <div class="col s12 l9">
+        <div class="slider-box">
+          <div class="timer"></div>
+          <div class="slideshow">
+            {% for hero in slider_hero %}
+            <div class="slide-entry">
+                <a href="{{ hero.url }}">
+                    <span class="category">{{ hero.subtitle }}</span>
+                    <div class="col s12 image" style="background-image: url({{ hero.image.url }});">
+                    </div>
+                    <div class="slide-overlay"></div>
+                    <div class="col s12 slide-entry-title">
+                        <h1 class="title">{{ hero.title }}</h1>
+                        <p class="text">{{ hero.text }}</p>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+    </div>
+    <div class="col l3 hide-on-med-and-down">
+        <div class="youtube-box">
+            <script src="https://apis.google.com/js/platform.js"></script>
+            <div class="g-ytsubscribe" data-channel="raportobiezyswiata" data-layout="full" data-count="default" data-theme="dark"></div>
+        </div>
+        <div class="twitter-box">
+            <h4 style="color: white">Śledź na Twitterze</h4>
+            <a href="https://twitter.com/_ROTV" class="twitter-follow-button" data-size="large" data-show-count="false">Follow @_ROTV</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
+        <div class="facebook-box like-box-wrapper">
+          <div class="fb-page" data-href="https://www.facebook.com/raportobiezyswiata/" data-height="550" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false"><blockquote cite="https://www.facebook.com/raportobiezyswiata/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/raportobiezyswiata/">Raport Obieżyświata</a></blockquote></div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+    <div class="row heros-list">
+        <div class="col l9">
+            <div class="row">
+                {% for hero in index_hero %}
+                  <div class="col s12 m6 l3 hero-entry">
+                    <a href="{{ hero.url }}">
+                        <div class="hero-entry-image waves-effect light-waves btn-large" style="background-image: url({{ hero.image.url }});">
+                            <div class="hero-entry-overlay"></div>
+                        </div>
+                        <div class="hero-entry-category">
+                          {{ hero.subtitle }}
+                        </div>
+                        <h1 class="hero-entry-title">
+                          {{ hero.title }}
+                        </h1>
+                    </a>
+                  </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container index">
+  <div class="row">
+    <div class="col s12 l6">
+      <div class="entries entry-list">
+        {% for entry in recent_blog_posts %}
+          {% with flow_text_disabled=True index_image=True %}
+          {% include 'blog/_entry_brief.html' %}
+          {% endwith %}
+        {% endfor %}
+        <a class="more-block" href="{% url "blog_archive" %}">Zobacz wszystkie aktualności</a>
+      </div>
+    </div>
+
+
+    <div class="col s12 l3">
+      <h3>Nowe materiały wideo</h3>
+      {% recent_episodes starting=0 limit=8 %}
+    </div>
+
+    <div class="col s12 l3">
+        {% if upcoming_patronage_list %}
+          <div class="events-next-event">
+            <h3>{% if upcoming_patronage_list.count == 1 %}Najbliższe wydarzenie{% else %}Najbliższe wydarzenia{% endif %}</h3>
+              {% for patronage in upcoming_patronage_list %}
+                <a href="{{ patronage.url }}" class="event-details">
+                    {% if patronage.banner_image %}
+                        <img src="{{ patronage.banner_image.url }}" alt="" class="responsive-img">
+                    {% else %}
+                        <img src="{{ patronage.logo.url }}" alt="" class="responsive-img">
+                    {% endif %}
+                  <span class="event-date">{{ patronage.start }} - {{ patronage.end }}</span>
+                </a>
+              {% endfor %}
+          </div>
+        {% endif %}
+        {% if upcoming_patronage_list %}
+        <h3>Zapraszamy także na...</h3>
+        <div class="events-next-event row">
+            {% for patronage in media_patronage_list %}
+            <div class="col s12 m6 l12">
+                <a href="{{ patronage.url }}" class="event-details">
+                    {% if patronage.banner_image %}
+                        <img src="{{ patronage.banner_image.url }}" alt="" class="responsive-img">
+                    {% else %}
+                        <img src="{{ patronage.logo.url }}" alt="" class="responsive-img">
+                    {% endif %}
+                  <span class="event-date">{{ patronage.start }} - {{ patronage.end }}</span>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+
+  </div>
+
+
+  <div class="row">
+    <div class="col s12">
+      <h1>Polecane materiały</h1>
+      {% promoted_episodes_cards limit=4 columns="s12 m6 l3" %}
+    </div>
+  </div>
+</div>
+{% endblock content %}

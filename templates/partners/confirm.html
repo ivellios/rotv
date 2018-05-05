@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static material_form %}
+
+{% block title %}Zgłoszenie wydarzenia - {{ block.super }} {% endblock %}
+{% block description %}{% endblock %}
+
+{% block stylesheet %}
+    <link href="{% static 'material/css/materialize.forms.css' %}" rel="stylesheet">
+    <link href="{% static 'material/css/jquery.datetimepicker.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block javascript %}
+    <script src="{% static 'material/js/jquery.datetimepicker.full.js' %}"></script>
+    <script src="{% static 'material/js/jquery.formset.js' %}"></script>
+    <script src="{% static 'material/js/materialize.forms.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="container entries flatpage">
+        <div class="row">
+            <div class="col s12 l8">
+                <div class="entry-content white">
+                    <header>
+                        <h1>
+                            Zgłoszenie zostało przekazane.
+                        </h1>
+                    </header>
+
+                    <p>
+                        Dzięki za zainteresowanie współpracą. Otrzymaliśmy Twoje zgłoszenie i wkrótce się do Ciebie odezwiemy ze szczegółami.
+                    </p>
+                </div>
+            </div>
+    </div>
+
+    </div>
+{% endblock content %}

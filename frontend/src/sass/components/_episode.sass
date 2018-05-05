@@ -1,0 +1,102 @@
+.video
+  .row
+    @media #{$medium-and-down}
+      margin-bottom: 0
+    .video-column
+      @media #{$small-and-down}
+        padding: 0
+      .prev-next
+        margin-bottom: 0
+    .col.episodes-box
+      @media #{$medium-and-down}
+        height: auto
+        margin-bottom: 10px
+      @media #{$small-and-down}
+        padding: 0
+      h3
+        margin: 0
+        height: 2.5rem
+        padding: 0 10px
+        line-height: 2.7rem
+        background: $primary-color
+        color: white
+        font-size: 1rem
+      .episodes-list-toggle
+        color: white
+        margin-right: 5px
+        font-size: 1em
+        i
+          margin-right: 10px
+          margin-left: 5px
+      .episodes-list
+        overflow: auto
+        position: relative
+        height: 410px
+        background: white
+        margin-bottom: 10px
+        @media #{$medium-and-down}
+          display: none
+          height: auto
+        a
+          position: relative
+          display: block
+          width: 100%
+          .episodes-list-item
+            padding: 10px 0
+            position: relative
+            &:hover
+              background: #ccc
+            &.current-episode
+              background-color: $secondary-color
+              color: white
+              font-weight: bold
+            .image
+              line-height: 0
+    .tags
+      margin-bottom: 10px
+      padding: 10px 0
+      @media #{$medium-and-down}
+        padding: 10px
+      .chip
+        background-color: #eee
+      .chip:hover
+        background-color: $primary-color
+        color: white
+
+
+
+.navbar-breadcrumbs
+  z-index: 996
+  nav
+    background-color: $secondary-color
+    @media #{$medium-and-down}
+      padding-left: 10px
+  .breadcrumbs
+    font-size: 2rem
+    @media #{$medium-and-down}
+      font-size: 1em
+      font-weight: bold
+
+.block
+  padding: 10px
+
+.details
+  @media #{$medium-and-down}
+    margin-bottom: 20px
+
+.episode-details
+  h1
+    font-size: 1.6rem
+
+nav.prev-next
+  padding: 0
+  margin-bottom: 20px
+  a
+    font-size: 1rem
+    @media #{$medium-and-down}
+      font-size: 1rem
+      i
+        height: auto
+
+main nav.prev-next ul.left
+  padding-left: 0

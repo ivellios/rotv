@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load thumbnail %}
+
+{% block meta %}
+<meta property="og:title" content="Serie wideo w naszej telewizji" />
+<meta property="og:description" content="{{ program.desc }}" />
+<meta property="og:type" content="video.tv_show" />
+<meta property="og:url" content="http://raportobiezyswiata.tv{% url "program_list" %}" />
+{% if program.get_episode_list %}<meta property="og:image" content="http://raportobiezyswiata.tv{{ program.get_episode_list.0.image.url }}" />{% endif %}
+<meta property="og:site_name" content="Raport Obieżyświata" />
+<meta property="fb:admins" content="100000251304502" />
+{% endblock meta %}
+
+{% block title %}{{ program.name }} - {{ block.super }}{% endblock %}
+{% block description %}{{ program.desc }}{% endblock %}
+
+
+{% block breadcrumbs# %}
+<div class="navbar-fixed navbar-breadcrumbs">
+<nav class="{{ program.slug }}-background">
+  <div class="nav-wrapper">
+    <a class="breadcrumbs" href="#">Programy</a>
+    <ul class="right">
+      <li class="hide-on-small-only"><a href="#"><i class="fa fa-facebook"></i></a></li>
+      <li class="hide-on-small-only"><a href="#"><i class="fa fa-twitter"></i></a></li>
+    </ul>
+  </div>
+</nav>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container program-list">
+  <div class="row">
+    <div class="col s12 l9">
+  {% for program in program_list %}
+  <div class="program-detail section scrollspy" id="{{ program.slug }}">
+    <div class="navbar navbar-breadcrumbs">
+    <nav class="{{ program.slug }}-background">
+      <div class="nav-wrapper">
+        <a class="breadcrumbs" href="{{ program.get_absolute_url }}">{{ program.name }}</a>
+        <ul class="right">
+          <li class="hide-on-small-only"><a href="#"><i class="fa fa-facebook"></i></a></li>
+          <li class="hide-on-small-only"><a href="#"><i class="fa fa-twitter"></i></a></li>
+        </ul>
+      </div>
+    </nav>
+    </div>
+    <header>
+      {% if program.image %}
+      <div class="row">
+        <div class="col s12 center program-image">
+          <img src="{{ program.image.url }}" alt="" class="responsive-img">
+        </div>
+      </div>
+      {% endif %}
+      <div class="row">
+        <div class="col s12 m6 l8">
+          {{ program.desc|safe }}
+        </div>
+        <div class="col s12 m6 l4">
+          <div class="collection">
+            <div class="collection-item">Liczba materiałów w serii <span class="badge {{ program.slug }}-background white-text">{{ program.get_episode_list.count }}</span></div>
+          </div>
+          <div class="block tags ">
+            {% for tag in program.tags %}
+            <a class="chip white {{ program.slug }}-hover-background" href="{% url 'tag_search_results' tag.name|slugify %}">{{ tag }}</a>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <h1>Odcinki w tej serii</h1>
+    <div class="row">
+      {% with program.get_episode_brief as episodes %}
+      {% with hide_program=True %}
+        {% include "program/_program_episode_cards.html" %}
+      {% endwith %}
+      {% endwith %}
+    </div>
+    <a class="more-block" href="{{ program.get_absolute_url }}">Zobacz wszystkie odcinki na stronie serii</a>
+    <hr>
+  </div>
+  {% endfor %}
+    </div>
+    <div class="col hide-on-med-and-down l3">
+      <ul class="section table-of-contents">
+        {% for program in program_list %}
+        <li><a href="#{{ program.slug }}">{{ program.name }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock content %}

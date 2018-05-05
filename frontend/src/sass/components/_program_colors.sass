@@ -1,0 +1,36 @@
+$program-colors: kontroll #dd8b27, knk #1a9146, ro #677821, na-marginesie #54432b, w-terenie #ba2026, orgowie-do-raportu #514199, twoj-ruch #17aacc
+
+@each $value in $program-colors
+  .#{nth($value, 1)}-background
+    background-color: nth($value, 2) !important
+  .#{nth($value, 1)}
+    color: nth($value, 2) !important
+  .#{nth($value, 1)}-border
+    border-color: nth($value, 2) !important
+
+  .#{nth($value, 1)}-hover:hover
+    color: nth($value, 2) !important
+  .#{nth($value, 1)}-hover-background:hover
+    background-color: nth($value, 2) !important
+    color: white
+//
+// .kontroll
+//   background-color: #dd8b27 !important
+//
+// .knk
+//   background-color: #1a9146 !important
+//
+// .ro
+//   background-color: $primary-color !important
+//
+// .na-marginesie
+//   background-color: #54432b !important
+//
+// .w-terenie
+//   background-color: #ba2026 !important
+//
+// .orgowie-do-raportu
+//   background-color: #514199 !important
+//
+// .twoj-ruch
+//   background-color: #17aacc !important
