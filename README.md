@@ -1,4 +1,4 @@
-# rotv
+# rotv - Raport Obieżyświata project
 
 This repository is a django project for [Raport Obieżyświata](http://raportobiezyswiata.tv) website. All apps used here are in a separate lib [django-rotv-apps](https://github.com/ivellios/django-rotv-apps).
 
