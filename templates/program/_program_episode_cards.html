@@ -20,9 +20,11 @@
       </div>
       {% endif %}
       <div class="card-image">
+        {% if episode.program %}
         <span class="chip right ">
           <a href="{{ episode.get_absolute_url }}">#{{ episode.number|stringformat:"02d" }}</a>
         </span>
+        {% endif %}
         <a class="waves-effect waves-light" href="{{ episode.get_absolute_url }}">
           <img src="
             {% if forloop.counter < 3 %}

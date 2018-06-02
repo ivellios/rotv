@@ -11,6 +11,8 @@
     <div class="col s12 m6 l12">
       <div class="row similiar-episodes-list-item {{ episode.program.slug}}-border">
         <div class="program-name">
+        {% if episode.program %}
+
             <a class="" href="{{ episode.program.get_absolute_url }}">
               {{ episode.program.name }}
             </a>
@@ -19,6 +21,7 @@
                 #{{ episode.number|stringformat:"02d" }}
               </span>
             </a>
+        {% endif %}
         </div>
         <a href="{{ episode.get_absolute_url }}" title="{{ episode.title }}">
             <div class="col s12 image">

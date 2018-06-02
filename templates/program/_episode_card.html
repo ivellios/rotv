@@ -1,5 +1,5 @@
 {% load thumbnail %}<div class="card small episode-card {% if size %}{{ size }}{% endif %}">
-  {% if not hide_program %}
+  {% if not hide_program and episode.program %}
   <div class="program-name {{ episode.program.slug }}-border">
     {{ episode.program.name }}
     <span class="right">#{{ episode.number|stringformat:"02d" }}</span>

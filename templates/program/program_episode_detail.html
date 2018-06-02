@@ -13,6 +13,7 @@
 <meta property="og:site_name" content="Raport Obieżyświata" />
 <meta property="og:description" content="{{ episode.short }}"/>
 <meta property="fb:admins" content="100000251304502" />
+<meta property="video:series" content="http://raportobiezyswiata.tv{{ episode.program.get_absolute_url }}"/>
 {% comment %}======== VIDEO PLAYER FOR FB ===========
 <meta property="og:video" content="http://www.youtube.com/v/{{ episode.youtube_code }}?version=3&amp;autohide=1"/>
 <meta property="og:video:type" content="application/x-shockwave-flash">
@@ -27,8 +28,9 @@
 
 {% block breadcrumbs %}
 <div class="navbar-fixed navbar-breadcrumbs">
-<nav class="">
+<nav class="{{ episode.program.slug }}-background">
   <div class="nav-wrapper">
+    <a class="breadcrumbs" href="{{ episode.program.get_absolute_url }}">{{ episode.program }} #{{ episode.number|stringformat:"02d"}} </a>
     <span class="hide-on-med-and-down"> {{ episode.title }}</span>
     <ul class="right">
       <li class="hide-on-small-only"><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -44,16 +46,32 @@
 {% block content %}
 <div class="container video">
   <div class="row">
-    <div class="col s12 video-column">
+    <div class="col s12 l8 video-column">
       <div class="episode-box">
         <div class="video-box">
           <div class="video-container">
             <iframe width="640" height="360" src="http://www.youtube.com/embed/{{ episode.youtube_code }}?wmode=transparent&amp;showinfo=0&amp;theme=light&amp;modestbranding=0&amp;autoplay=0&hd=1" frameborder="0" allowfullscreen></iframe>
           </div>
+          <nav class="white prev-next hide-on-med-and-up">
+            <div class="nav-wrapper">
+              {% with episode.get_previous_episode_in_program as ep %}
+              {% if ep %}
+              <ul class="left">
+                <li class=""><a href="{{ ep.get_absolute_url }}"><i class="fa fa-arrow-left grey-text"></i></a></li>
+              </ul>
+              {% endif %}
+              {% endwith %}
+              {% with episode.get_next_episode_in_program as ep %}
+              {% if ep %}
+              <ul class="right">
+                <li class=""><a href="{{ ep.get_absoolute_url }}"><i class="fa fa-arrow-right grey-text"></i></a></li>
+              </ul>
+              {% endif %}
+              {% endwith %}
+            </div>
+          </nav>
         </div>
       </div>
-    </div>
-    <div class="col s12 l8">
       <div class="episode-details white block ">
         <h1>{{ episode.title }}</h1>
         <hr class="">
@@ -67,16 +85,39 @@
         {% endfor %}
       </div>
 
+      <nav class="white block prev-next hide-on-small-only">
+        <div class="nav-wrapper">
+          {% with episode.get_previous_episode_in_program as ep %}
+          {% if ep %}
+          <ul class="left">
+            <li class="">
+              <a href="{{ ep.get_absolute_url }}" class="grey-text text-darken-3">
+                <i class="fa fa-arrow-left"></i> #{{ ep.number|stringformat:"02d" }} {{ ep.title }}
+              </a>
+            </li>
+          </ul>
+          {% endif %}
+          {% endwith %}
+          {% with episode.get_next_episode_in_program as ep %}
+          {% if ep %}
+          <ul class="right">
+            <li><a class="grey-text text-darken-3" href="{{ ep.get_absolute_url }}">#{{ ep.number|stringformat:"02d" }} {{ ep.title }} <i class="fa fa-arrow-right"></i></a></li>
+          </ul>
+          {% endif %}
+          {% endwith %}
+        </div>
+      </nav>
+
       <div class="col s12 details">
         {% include '_disqus.html' %}
       </div>
 
     </div>
 
-    {% comment %}
+
     <div class="col s12 l4 episodes-box">
       <h3 class="hide-on-large-only"><a href="#" class="episodes-list-toggle "><i class="fa fa-caret-down"></i> Wszystkie odcinki w serii</a></h3>
-      <h3 class="hide-on-med-and-down"></h3>
+      <h3 class="hide-on-med-and-down">Wszystkie odcinki w serii</h3>
       <div class="episodes-list">
         {% for e in episode.program.episode_set.all|dictsortreversed:"number" %}
         <a id="episode_{{e.number}}" href="{{ e.get_absolute_url }}">
@@ -92,13 +133,12 @@
         {% endfor %}
       </div>
     </div>
-    {% endcomment %}
 
     <div class="row">
       <div class="col s12 l4 side">
         {% similar_episodes_by_tags_list episode.tags limit=4 header="Podobne materiały" %}
         {% similar_entries_by_tags episode.tags limit=4 header="Powiązane aktualności" %}
-        {% similar_programs_by_tags episode header="Podobne serie" %}
+        {% similar_programs_by_tags episode header="Inne programy" %}
       </div>
     </div>
 
