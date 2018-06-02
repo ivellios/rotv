@@ -119,7 +119,7 @@
       <h3 class="hide-on-large-only"><a href="#" class="episodes-list-toggle "><i class="fa fa-caret-down"></i> Wszystkie filmy na liście</a></h3>
       <h3 class="hide-on-med-and-down">Wszystkie filmy na liście</h3>
       <div class="episodes-list">
-        {% for e in playlist.episodes.all %}
+        {% for e in playlist.sorted_episodes %}
         <a id="episode_{{e.id}}" href="{% url 'playlist_episode_detail' playlist.slug e.slug %}">
           <div class="col s12 episodes-list-item {% if e == episode %}current-episode {{ playlist.slug }}-background{% endif %}">
             <div class="col s3 l5 image">
