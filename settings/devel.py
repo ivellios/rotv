@@ -36,3 +36,5 @@ try:
     from .settings_local import *
 except ImportError:
     pass
+
+SHORTENER_BASE_URL = 'http://localhost:8000'

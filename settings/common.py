@@ -29,6 +29,7 @@ INSTALLED_APPS = (
     'rotv_apps.heros',
     'rotv_apps.navigations',
     'rotv_apps.partners',
+    'rotv_apps.shortener',
 
     'django_extensions',
     'easy_thumbnails',
@@ -168,3 +169,5 @@ TINYMCE_DEFAULT_CONFIG = {
 }
 
 TINYMCE_CSS_URL = STATIC_URL + 'css/admin.css'
+
+SHORTENER_BASE_URL = 'https://rotv.yt'
