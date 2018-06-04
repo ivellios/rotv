@@ -39,3 +39,5 @@ EMAIL_HOST_PASSWORD = read_env('ROTV_STAGING_EMAIL_PASSWORD')
 ROOT_URL = 'http://staging.raportobiezyswiata.tv'
 
 PATRONAGE_MANAGERS = ['just_checking@mailtrap.io']
+
+SHORTENER_BASE_URL = 'https://staging.raportobiezyswiata.tv'
