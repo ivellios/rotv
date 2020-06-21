@@ -1,6 +1,6 @@
 beautifulsoup4==4.3.2
 Django==2.2.13
-Pillow>=3.1.1
+Pillow==6.2.2
 django-filebrowser==3.13.1
 django-grappelli==2.14.2
 django-adminactions
