@@ -1,8 +1,8 @@
 beautifulsoup4==4.3.2
-Django==1.11.29
+Django==2.2.13
 Pillow>=3.1.1
-django-filebrowser>=3.7.2
-django-grappelli>=2.9.1
+django-filebrowser==3.13.1
+django-grappelli==2.14.2
 django-adminactions
 django-tagging==0.4.5
 django-material==1.1.1
