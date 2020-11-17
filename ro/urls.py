@@ -1,4 +1,5 @@
-from django.conf.urls import url, include
+from django.conf.urls import include
+from django.urls import path
 
 from django.contrib import admin
 from django.conf import settings
@@ -20,15 +21,15 @@ class RobotsView(TemplateView):
 
 
 urlpatterns = [
-    url(r'', include('rotv_apps.urls')),
+    path(r'', include('rotv_apps.urls')),
 
     # maintain
-    url(r'^robots.txt$', RobotsView.as_view(), name='robots'),
+    path(r'robots.txt', RobotsView.as_view(), name='robots'),
 
     # administration
-    url(r'^admin/filebrowser/', include(filebrowser_sites.urls)),
-    url(r'^grappelli/', include('grappelli.urls')),
-    url(r'^adminactions/', include('adminactions.urls')),
-    url(r'^admin/', admin.site.urls),
+    path('admin/filebrowser/', filebrowser_sites.urls),
+    path('grappelli/', include('grappelli.urls')),
+    path('adminactions/', include('adminactions.urls')),
+    path('admin/', admin.site.urls),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

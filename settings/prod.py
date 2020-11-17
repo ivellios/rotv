@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from os import environ
 
-from settings.common import *
+from .common import *
 
 read_env = lambda e, d=None: environ[e] if environ.has_key(e) else d
 

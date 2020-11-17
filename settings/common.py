@@ -40,7 +40,7 @@ INSTALLED_APPS = (
 GRAPPELLI_INDEX_DASHBOARD = 'ro.dashboard.CustomIndexDashboard'
 SITE_ID = 1
 
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -48,7 +48,6 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'staticflatpages.middleware.StaticFlatpageFallbackMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 ]
 
@@ -118,7 +117,7 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = BASE_DIR + '/public/media/'
 MEDIA_URL = '/media/'
 
-FILEBROWSER_EXTENSIONS = {
+EXTENSIONS = {
     'Folder': [''],
     'Image': ['.jpg', '.jpeg', '.gif', '.png', '.tif', '.tiff'],
     'Zip': ['.zip', '.rar'],
@@ -153,7 +152,7 @@ TINYMCE_DEFAULT_CONFIG = {
     'menubar': False,
     'inline': False,
     'statusbar': True,
-    'height': 360,
+    'height': 460,
     'image_advtab': True,
     'invalid_elements': 'p[dir],span',
     'invalid_styles': {'p': 'font-weight,font-style,text-decoration,line-height,margin-top,margin-bottom,'
