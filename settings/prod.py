@@ -3,7 +3,7 @@ from os import environ
 
 from .common import *
 
-read_env = lambda e, d=None: environ[e] if environ.has_key(e) else d
+read_env = lambda e, d=None: environ[e] if e in environ else d
 
 DEBUG = False
 TEMPLATE_DEBUG = False
