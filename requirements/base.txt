@@ -1,5 +1,5 @@
 beautifulsoup4==4.3.2
-Django==2.2.18
+Django==2.2.27
 Pillow==6.2.2
 django-filebrowser==3.13.1
 django-grappelli==2.14.2
